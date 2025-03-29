@@ -5,10 +5,13 @@ import Signup from './components/Signup';
 import StudentForm from './components/StudentForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TeacherForm from './components/TeacherForm';
-import TeacherTable from './components/teacherTable';
+
 import Admin from './components/Admin';
 import StudentTable from './components/StudentTable';
+import TeacherData from './components/TeacherData';
+
 // import '../App.css'; 
+
 
 function App() {
   return (
@@ -19,7 +22,7 @@ function App() {
         <Route path="/student" element={<StudentForm />} /> 
         <Route path="/teacher" element={<TeacherForm />} /> 
         <Route path="/studentData" element={<StudentTable />} /> 
-        <Route path="/teacherData" element={<TeacherTable />} /> 
+        <Route path="/teacherData" element={<TeacherData />} /> 
         <Route path="/adminData" element={<Admin />} /> 
       </Routes>
     </Router>
