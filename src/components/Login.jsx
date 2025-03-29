@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../App.css'; 
 import axios from 'axios';
-import { BASE_URL } from '../BASE_URL.JS';
+import { BASE_URL } from './Base_url';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');

@@ -3,7 +3,7 @@ import { Form, Button, Card, Row, Col, FloatingLabel } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocation, useNavigate,  } from "react-router-dom";
-import { BASE_URL } from "../BASE_URL.JS";
+import { BASE_URL } from "./Base_url";
 import axios from "axios";
 
 

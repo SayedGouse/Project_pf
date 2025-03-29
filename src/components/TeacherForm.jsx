@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { BASE_URL } from "../BASE_URL.JS";
+import { BASE_URL } from "./Base_url";
 
 const TeacherForm = () => {
 

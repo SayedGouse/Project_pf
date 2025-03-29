@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL } from "../BASE_URL.JS";
+import { BASE_URL } from "./Base_url";
 
 const StudentTable = () => {
   const location = useLocation();
