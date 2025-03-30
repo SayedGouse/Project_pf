@@ -14,11 +14,12 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+   const [loading, setLoading] = useState(false); 
 
     const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-  
+    setLoading(true); 
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
@@ -54,6 +55,9 @@ const Signup = () => {
         alert("Email already exists");
       }
       console.log("Signup Error:", error);
+    }
+    finally {
+      setLoading(false); 
     }
   };
 
@@ -120,7 +124,8 @@ const Signup = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-          <button type="submit">Sign Up</button>
+          <button type="submit">
+            {loading ? "loading..." :  "Sign Up"}</button>
         </form>
         <p>
           Already have an account? <Link to="/">Login</Link>

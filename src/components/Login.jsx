@@ -4,40 +4,39 @@ import '../App.css';
 import axios from 'axios';
 import { BASE_URL } from './Base_url';
 
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // State for error message
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false); // Loading state
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login Submitted:', { email, password });
-    if(email === '' || password === ''){
-      alert( "Please fill all the fields");
+    setErrorMessage('');
+
+    if (email === '' || password === '') {
+      alert('Please fill all the fields');
+      return;
     }
 
+    setLoading(true);
     try {
       const response = await axios.post(`${BASE_URL}/login`, { email, password });
-      console.log('Login Response:', response);
 
       if (response.status === 200) {
         const user = response.data.user;
-
+        
         if (user.role === 'student') {
-          navigate('/student', { state: { user :user } });
+          navigate('/student', { state: { user } });
         } else if (user.role === 'teacher') {
-          navigate('/teacher', { state: { user : user } });
+          navigate('/teacher', { state: { user } });
         } else if (user.role === 'admin') {
           navigate('/adminData');
         }
       }
     } catch (error) {
-      console.log('Login Error:', error);
-      
-      // Handle error messages
       if (error.response) {
         if (error.response.status === 404) {
           setErrorMessage('Incorrect email or password.');
@@ -47,6 +46,8 @@ const Login = () => {
       } else {
         setErrorMessage('Network error. Please check your connection.');
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -69,7 +70,9 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">Login</button>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Loading...' : 'Login'}
+          </button>
         </form>
         <p>
           Don't have an account? <Link to="/signup">Sign Up</Link>
